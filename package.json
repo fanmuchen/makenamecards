@@ -29,7 +29,10 @@
     "extends": [
       "react-app",
       "react-app/jest"
-    ]
+    ],
+    "rules": {
+      "no-octal-escape": "off"
+    }
   },
   "browserslist": {
     "production": [
