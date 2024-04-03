@@ -1,6 +1,6 @@
 import { jsPDF } from 'jspdf';
 import 'jspdf-autotable'; // Import autotable plugin if you need table formatting
-import './assets/mergedfont-normal.js';
+import './assets/mergedfont-base64.js';
 
 export const exportToPDF = (names: string, width: number, height: number) => {
   var scale = Math.min(width / 17, height / 17.96);
@@ -26,14 +26,14 @@ export const exportToPDF = (names: string, width: number, height: number) => {
           rotate_diviation = 13.4*scale
         }
         if (name.length === 4) {
-          rotate_diviation = 17.4*scale
+          rotate_diviation = 17.6*scale
         }
         if (name.length === 2) {
           // Split the string into an array of characters
           var characters = name.split('');
           // Insert 2 spaces between each character
-          name = characters.join('    ');
-          rotate_diviation = 13.2*scale
+          name = characters.join('   ');
+          rotate_diviation = 12.8*scale
         }
         
         doc.text(name, 10.5 + rotate_diviation, height*(1/4-1/11),{
