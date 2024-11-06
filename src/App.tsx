@@ -43,7 +43,7 @@ const App: React.FC = () => {
     <Layout>
       <Spin 
         spinning={loading} 
-        tip="正在加载字体文件，请稍候..." 
+        tip="正在加载字体资源... (18.4 MB)" 
         size="large"
       >
         <Content
