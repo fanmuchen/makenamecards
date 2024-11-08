@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Button, Input, Typography, message, Layout, Form, Divider, Checkbox, Spin, Select, Menu, Grid } from 'antd';
 import { exportToPDF } from './pdfUtils';
-import { InboxOutlined, HomeOutlined, ToolOutlined, UserOutlined } from '@ant-design/icons';
-import Sidebar from './Sidebar'; 
+import ToolkitSidebar from 'fmcnav'; 
 
 const { Text } = Typography;
 const { Content, Footer, Sider } = Layout;
@@ -49,7 +48,10 @@ const App: React.FC = () => {
 
   return (
     <Layout style={{ minHeight: '100vh' }}>
-      <Sidebar />
+        <ToolkitSidebar 
+          logo={`${process.env.PUBLIC_URL || ""}/logo.svg`}
+          selectedKeys={['makenamecards']}
+        />
       <Layout>
         <Spin spinning={loading} tip="正在加载字体资源... (18.4 MB)" size="large">
           <Content
