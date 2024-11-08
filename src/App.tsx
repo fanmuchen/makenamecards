@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
-import { Button, Input, Typography, message, Layout, Form, Divider, Checkbox, Spin, Select, Menu } from 'antd';
+import React, { useState, useEffect } from 'react';
+import { Button, Input, Typography, message, Layout, Form, Divider, Checkbox, Spin, Select, Menu, Grid } from 'antd';
 import { exportToPDF } from './pdfUtils';
-import { InboxOutlined, HomeOutlined, FileOutlined, UserOutlined } from '@ant-design/icons';
+import { InboxOutlined, HomeOutlined, ToolOutlined, UserOutlined } from '@ant-design/icons';
+import Sidebar from './Sidebar'; 
 
 const { Text } = Typography;
 const { Content, Footer, Sider } = Layout;
+const { useBreakpoint } = Grid;
 
 const App: React.FC = () => {
   const [names, setNames] = useState<string>('');
@@ -12,29 +14,11 @@ const App: React.FC = () => {
   const [height, setHeight] = useState<number | undefined>();
   const [loading, setLoading] = useState<boolean>(false);
   const [collapsed, setCollapsed] = useState(false);
+  const screens = useBreakpoint();
 
-  const menuItems = [
-    {
-      key: 'home',
-      icon: <HomeOutlined />,
-      label: <a href="https://www.muchen.fan" target="_blank" rel="noopener noreferrer">个人主页</a>,
-    },
-    {
-      key: 'tools',
-      icon: <FileOutlined />,
-      label: '小工具',
-      children: [
-        {
-          key: 'namecard',
-          label: <a href="https://tool.muchen.fan/makenamecards">席卡生成</a>,
-        },
-        {
-          key: 'assemblepdf',
-          label: <a href="https://tool.muchen.fan/assemblepdfs">PDF合并</a>,
-        },
-      ],
-    },
-  ];
+  useEffect(() => {
+    setCollapsed(!screens.md);
+  }, [screens.md]);
 
   const handleExportToPDF = async () => {
     if (!names) {
@@ -65,25 +49,12 @@ const App: React.FC = () => {
 
   return (
     <Layout style={{ minHeight: '100vh' }}>
-      <Sider 
-        collapsible 
-        collapsed={collapsed} 
-        onCollapse={(value) => setCollapsed(value)}
-        theme="light"
-      >
-        <div style={{ height: 32, margin: 16, background: 'rgba(0, 0, 0, 0.1)' }} />
-        <Menu
-          theme="light"
-          defaultSelectedKeys={['namecard']}
-          mode="inline"
-          items={menuItems}
-        />
-      </Sider>
+      <Sidebar />
       <Layout>
         <Spin spinning={loading} tip="正在加载字体资源... (18.4 MB)" size="large">
           <Content
             style={{
-              padding: '24px 24px',
+              padding: screens.md ? '24px 24px' : '12px',
               maxWidth: 800,
               margin: '0 auto',
               width: '100%',
