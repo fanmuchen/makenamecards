@@ -96,7 +96,7 @@ const App: React.FC = () => {
                     autoSize={{ minRows: 3 }}
                   />
                 </Form.Item>
-                <Form.Item label="纸张尺寸">
+                <Form.Item label="席卡尺寸">
                   <div style={{ display: 'flex' }}>
                     <Input
                       type="number"
