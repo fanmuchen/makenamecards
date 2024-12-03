@@ -5,6 +5,17 @@ set -a
 source .env
 set +a
 
+# Update specific dependency to the latest version
+echo "Updating fmcnav to the latest version..."
+npm install fmcnav@latest
+
+# Check if the update was successful
+if [ $? -ne 0 ]; then
+  echo "Dependency update failed. Exiting..."
+  exit 1
+fi
+
+
 # Clean local build directory before building
 echo "Cleaning local build directory..."
 rm -rf build

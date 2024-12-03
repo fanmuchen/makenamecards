@@ -70,23 +70,8 @@ const App: React.FC = () => {
               }}
             >
               <h2 style={{ textAlign: 'center', marginBottom: '16px' }}>席卡批量生成工具</h2>
-              <div style={{ marginTop: '16px' }}>
-                  <Text type="secondary">说明：</Text>
-                  <Text>
-                    <ol>
-                      <li>仅支持A4纸；</li>
-                      <li>名单中的名字之间应由逗号、顿号、斜杠或回车分隔；</li>
-                      <li>目前仅支持二至四字中文姓名，输入其他字符格式会乱；</li>
-                      <li>设置好席卡纸的宽度、高度（厘米）后点击按钮生成PDF；</li>
-                      <li>打印PDF前请仔细确认打印的页边距设置；<br />
-                        <Text type="danger" style={{ lineHeight: 1 }}>
-                          涉密pdf查看器：打印→页面处理→页面缩放，选择“无”；
-                        </Text>
-                      </li>
-                      <li>不支持华文行楷不含的的生僻字。←待完善</li>
-                    </ol>
-                  </Text>
-                </div>
+
+
               <Form layout="vertical">
                 <Form.Item label="输入名单">
                   <Input.TextArea
@@ -128,6 +113,30 @@ const App: React.FC = () => {
                   >
                     生成PDF
                   </Button>
+                  <div style={{ marginTop: '16px' }}>
+                  <Text type="secondary">说明：</Text>
+                  <Text>
+                    <ol>
+                      <li>目前仅支持A4纸，仅支持二至四字中文姓名；</li>
+                      <li>名单中的名字之间应由逗号、顿号、斜杠或回车分隔；</li>
+                      <li>生成的PDF付印时需注意不要添加页边距和页面缩放；
+                        {/* <br />
+                        <Text type="danger" style={{ lineHeight: 1 }}>
+                          涉密pdf查看器：打印→页面处理→页面缩放，选择“无”；
+                        </Text> */}
+                      </li>
+                      <li>本工具离线运行，不采集任何用户信息。</li>
+                    </ol>
+                  </Text>
+                </div>
+                <Text type="secondary">图示：<br/></Text>
+                <div style={{ textAlign: 'center'}}>
+                <img 
+                  src={`${process.env.PUBLIC_URL}/illustrator.svg`} 
+                  alt="Illustrator" 
+                  style={{ maxWidth: '600px' }}
+                />
+              </div>
                 </Form.Item>
               </Form>
             </div>
